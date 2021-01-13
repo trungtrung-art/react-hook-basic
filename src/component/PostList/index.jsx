@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ColorBox.scss'
 
 ColorBox.propTypes = {
-
+    
 };
 
 function getRamdomColor(){
