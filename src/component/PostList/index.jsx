@@ -1,39 +1,23 @@
-import React, { useState } from 'react';
-import './ColorBox.scss'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-ColorBox.propTypes = {
-    
+PostList.propTypes = {
+    posts: PropTypes.array,
 };
 
-function getRamdomColor(){
-    const COLOR_LIST = ['deeppink', 'green', 'yellow', 'black', 'blue']
-    const ramdomIndex = Math.trunc(Math.random() * 5)
-    return COLOR_LIST[ramdomIndex];
+PostList.defaultProps = {
+    posts: []
 }
 
-function ColorBox() {
-
-    const [ color, setColor] = useState(() => {
-        const initColor = localStorage.getItem('box_color') || 'deeppink'
-        console.log(initColor);
-        return initColor
-    })
-
-    function handleBoxClick() {
-        // ramdom 1 màu ngẫu nhiên -> setColor
-        const newColor = getRamdomColor();
-        setColor(newColor)
-        localStorage.setItem('box_color',newColor)
-    }
-
+function PostList(props) {
+    const {posts} = props
     return (
-        <div 
-        className = "color-box"
-        style = {{backgroundColor: color}}
-        onClick = {handleBoxClick}
-        >
-        </div>
+        <ul className="post-list">
+            {posts.map(post => (
+                <li key={post.id}>{post.title}</li>
+            ))}
+        </ul>
     );
 }
 
-export default ColorBox;
+export default PostList;
