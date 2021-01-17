@@ -1,31 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import PostList from './component/PostList';
+import Clock from './component/Clock';
 
 function App() {
-	const {postList, setPostList} = useState([])
-
-	useEffect(() => {
-		async function fetchPostList() {
-			try {
-				const requestUrl = 'http://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1'
-				const reponse = await fetch(requestUrl);
-				const reponseJSON = await reponse.json();
-				const {data} = reponseJSON
-				
-				setPostList(data)
-			} catch (error) {
-				console.log("Failed to fetch postlist: ", error.message);
-			}
-		}
-
-		fetchPostList()
-	},[]);
-
+	const [showClock, setShowClock] = useState(true)
 	return (
 		<div className="app">
-			<h1>React Hook - Post List</h1>
-			<PostList posts={postList}/>
+			<h1>React Hook - Clock</h1>
+			{showClock && <Clock/>}
+			<button onClick={() => setShowClock(false)}>show CLock</button>
 		</div>
 	);
 }
