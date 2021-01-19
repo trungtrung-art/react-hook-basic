@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import useClock from '../../hooks/useClock';
 
 Clock.propTypes = {};
 
@@ -14,25 +15,10 @@ function formatDate(date) {
 }
 
 function Clock(props) {
-
-    const [timeString, setTimeString] = useState('')
-
-	useEffect(() => {
-		const clockInterval = setInterval(() => {
-			const now = new Date();
-			//HH:mm:SS
-			const newTimeString = formatDate(now)
-
-			setTimeString(newTimeString)
-        })
-        
-        return () => {
-            clearInterval(clockInterval)
-        }
-    },[])
+    const {timeString} = useClock()
     
     return (
-        <div>
+        <div className="Clock">
             <p>{timeString}</p>
         </div>
     );
