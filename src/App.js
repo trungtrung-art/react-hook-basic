@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './App.scss';
-import MagicBox from './component/MagicBox';
+import React, {useState} from 'react';
+import Hero from './component/Hero'
 
 function App() {
+	const [count, setCount] = useState(0);
+
 	return (
 		<div className="app">
-			<MagicBox/>
+			<h1>ReactHook - Memo</h1>
+			<p>{count}</p>
+			<button onClick={() => setCount(count + 1)}>Nhấn đi</button>
+			<Hero name="Thientrung"/>
 		</div>
 	);
-}
+};
 
 export default App;
